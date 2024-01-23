@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
+      "PackagePath": "staticwebassets\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg"
+    },
+    {
+      "Id": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
+      "PackagePath": "staticwebassets\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Learning_platform.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Learning_platform.props",
+      "PackagePath": "build\\Learning_platform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Learning_platform.props",
+      "PackagePath": "buildMultiTargeting\\Learning_platform.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Learning_platform.props",
+      "PackagePath": "buildTransitive\\Learning_platform.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

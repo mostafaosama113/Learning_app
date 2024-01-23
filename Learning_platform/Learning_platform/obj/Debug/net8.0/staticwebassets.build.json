@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "0zKSPoEZN0kRidwmlpwIw+k4JfZZiiljtQjGxd8RCKc=",
+  "Source": "Learning_platform",
+  "BasePath": "_content/Learning_platform",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Learning_platform\\wwwroot",
+      "Source": "Learning_platform",
+      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "BasePath": "_content/Learning_platform",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
+      "SourceId": "Learning_platform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "BasePath": "_content/Learning_platform",
+      "RelativePath": "Images/0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
+      "SourceId": "Learning_platform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "BasePath": "_content/Learning_platform",
+      "RelativePath": "Images/cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg"
+    }
+  ]
+}
