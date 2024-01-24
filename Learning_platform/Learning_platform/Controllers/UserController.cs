@@ -1,9 +1,11 @@
 ﻿using Learning_platform.DTO;
 using Learning_platform.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -40,7 +42,10 @@ namespace Learning_platform.Controllers
                 ApplicationUser user = new ApplicationUser();
                 user.Email = userDto.Email;
                 user.UserName = userDto.Email.Split("@")[0];
-
+                if(await usermanager.FindByEmailAsync(userDto.Email) is not null)
+                {
+                    return BadRequest("User already exists!");
+                }
                 if (userDto.Image != null)
                 {
                     string[] allowedExtensions = { ".png", ".jpg" };
@@ -64,14 +69,13 @@ namespace Learning_platform.Controllers
                 IdentityResult result = await usermanager.CreateAsync(user, userDto.Password);
                 if (result.Succeeded)
                 {
-                    //var role= "Usre";
-                    //role = userDto.RoleName;
+                    var role = "User";
                     //if (!await rolemanager.RoleExistsAsync(role))
                     //{
                     //    return BadRequest($"Invalid role name: {role}");
                     //}
 
-                    await usermanager.AddToRoleAsync(user, "Usre");
+                    await usermanager.AddToRoleAsync(user, role);
 
                     return Ok("Account added successfully");
                 }
@@ -124,12 +128,28 @@ namespace Learning_platform.Controllers
                             expiration = mytoken.ValidTo
                         });
                     }
-                    return Ok("Email and password invalid");
+                    return Ok("Email or password are invalid");
                 }
                 return Unauthorized();
 
             }
-            return Unauthorized();
+            return BadRequest();
+        }
+
+        [HttpPost("add_admin")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> addAdmin(AddAdminDto userDto)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            var user = await usermanager.FindByEmailAsync(userDto.Email);
+            if (user == null) return BadRequest();
+            if (!await rolemanager.RoleExistsAsync("Admin"))
+            {
+                return BadRequest("role already exists!");
+            }
+            await usermanager.AddToRoleAsync(user, "Admin");
+
+            return Ok();
         }
     }
 }

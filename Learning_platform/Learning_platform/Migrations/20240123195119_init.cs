@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Learning_platform.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,7 @@ namespace Learning_platform.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -177,8 +178,8 @@ namespace Learning_platform.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "b4dde221-1cba-4d89-af01-aef4a2355e6c", "c2262548-9450-4edb-bfbf-b5e19407fea1", "Manager", "manager" },
-                    { "d0bda8ed-ae28-415e-8858-75716c50089f", "11e41271-f73e-43cd-98b6-019ccc99c8ed", "User", "user" }
+                    { "810e118b-a910-43e5-b517-f263601854ca", "eb5be4d3-ad1d-4987-bbcb-f8c003c4338e", "User", "user" },
+                    { "c390f5f2-410f-4d3b-ae0c-ccf3a1204653", "0ee5ce1e-ac5f-48d9-b9a8-a797f65a4d9a", "Manager", "manager" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -18,7 +18,5 @@ namespace Learning_platform.DTO
         public string ConfirmPassword { get; set; }
         [Required]
         public IFormFile Image { get; set; }
-        [JsonIgnore]
-        public string RoleName { get; set; } = "User";
     }
 }

@@ -2,13 +2,10 @@
 
 namespace Learning_platform.DTO
 {
-    public class LoginUserDto
+    public class AddAdminDto
     {
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
     }
 }
