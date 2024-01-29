@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\certificates\" />
+    <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
 </Project>

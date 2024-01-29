@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learning_platform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240123195119_init")]
-    partial class init
+    [Migration("20240129181554_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace Learning_platform.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CourseInstructor", b =>
+                {
+                    b.Property<int>("CoursesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructorsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoursesId", "InstructorsId");
+
+                    b.HasIndex("InstructorsId");
+
+                    b.ToTable("CourseInstructor");
+                });
 
             modelBuilder.Entity("Learning_platform.Models.ApplicationUser", b =>
                 {
@@ -92,9 +107,75 @@ namespace Learning_platform.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "613e3ce3-8a7b-499c-b549-fe0634122f65",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            Image = "adminphoto",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "Admin",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH7FtSdvSaLCdfWTXr4KfJ+spPl6hZsZxFNqBM6KdgqfnlaqtCRJcAoCCO3gbU5fig==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Learning_platform.Models.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageOfCertificate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Instructor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,9 +191,49 @@ namespace Learning_platform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Instructors");
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Lesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Video")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Vote")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -144,17 +265,17 @@ namespace Learning_platform.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "810e118b-a910-43e5-b517-f263601854ca",
-                            ConcurrencyStamp = "eb5be4d3-ad1d-4987-bbcb-f8c003c4338e",
+                            Id = "7b33de81-e875-47c9-93db-96b1c5e035e4",
+                            ConcurrencyStamp = "da1cba9b-4b2f-4f8d-b05e-ce059d89ef6a",
                             Name = "User",
                             NormalizedName = "user"
                         },
                         new
                         {
-                            Id = "c390f5f2-410f-4d3b-ae0c-ccf3a1204653",
-                            ConcurrencyStamp = "0ee5ce1e-ac5f-48d9-b9a8-a797f65a4d9a",
-                            Name = "Manager",
-                            NormalizedName = "manager"
+                            Id = "2",
+                            ConcurrencyStamp = "771bf382-e23a-410b-8f7d-88afb7b56ee3",
+                            Name = "Admin",
+                            NormalizedName = "admin"
                         });
                 });
 
@@ -243,6 +364,13 @@ namespace Learning_platform.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -262,6 +390,43 @@ namespace Learning_platform.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("CourseInstructor", b =>
+                {
+                    b.HasOne("Learning_platform.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Learning_platform.Models.Instructor", null)
+                        .WithMany()
+                        .HasForeignKey("InstructorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Course", b =>
+                {
+                    b.HasOne("Learning_platform.Models.Category", "Category")
+                        .WithMany("Courses")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Lesson", b =>
+                {
+                    b.HasOne("Learning_platform.Models.Course", "Course")
+                        .WithMany("Lessons")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -313,6 +478,16 @@ namespace Learning_platform.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Category", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Course", b =>
+                {
+                    b.Navigation("Lessons");
                 });
 #pragma warning restore 612, 618
         }
