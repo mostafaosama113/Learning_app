@@ -1,5 +1,6 @@
 ﻿using Learning_platform.DTO;
 using Learning_platform.Models;
+using Learning_platform.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -138,7 +139,7 @@ namespace Learning_platform.Controllers
 
         [HttpPost("add_admin")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> addAdmin(AddAdminDto userDto)
+        public async Task<IActionResult> AddAdmin(AddAdminDto userDto)
         {
             if (!ModelState.IsValid) return BadRequest();
             var user = await usermanager.FindByEmailAsync(userDto.Email);
@@ -151,5 +152,38 @@ namespace Learning_platform.Controllers
 
             return Ok();
         }
+        [HttpPost("send_reset_code")]
+        public async Task<IActionResult> SendResetCode(SendResetPassDto model, [FromServices] IEmailProvider _emailProvider)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            var user = await usermanager.FindByEmailAsync(model.Email);
+            if (user is null) return BadRequest("Email Not Found!");
+            int pin = await _emailProvider.SendResetCode(model.Email);
+            user.PasswordResetPin = pin;
+            user.ResetExpires = DateTime.Now.AddMinutes(5);
+            await usermanager.UpdateAsync(user);
+            return Ok(new{
+                ExpireAt = user.ResetExpires,
+            });
+        }
+        [HttpPost("reset_code")]
+        public async Task<IActionResult> SendResetCode(ResetPassDto model)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            var user = await usermanager.FindByEmailAsync(model.Email);
+            if (user is null || user.ResetExpires is null
+               || user.ResetExpires < DateTime.Now || user.PasswordResetPin != model.pin)
+                return BadRequest("Invalid Token!");
+
+            //await usermanager.ChangePasswordAsync(user, model.Pass);
+            var token = await usermanager.GeneratePasswordResetTokenAsync(user);
+            var result = await usermanager.ResetPasswordAsync(user, token, model.Pass);
+            if (result is null) return BadRequest();
+            user.ResetExpires = null;
+            user.PasswordResetPin = null;
+            await usermanager.UpdateAsync(user);
+            return Ok();
+        }
+
     }
 }

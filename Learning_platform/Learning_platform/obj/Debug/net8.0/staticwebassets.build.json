@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vnTbUdmuihTu7FAFQByGmm8SF4+py2j00PqmXTgxjLc=",
+  "Hash": "pGThZjjq+jNG5qQy2ReY21ifU74bLXe+bG1TIuMSNAc=",
   "Source": "Learning_platform",
   "BasePath": "_content/Learning_platform",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Learning_platform\\wwwroot",
       "Source": "Learning_platform",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\0e15cb6c-5ddb-4b05-bb43-880e4f4fcaf7_الجوكر.jpg"
     },
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\694a89cc-c137-4774-93a1-c7917d50d4d6_Screenshot 2023-11-29 095836.png",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\694a89cc-c137-4774-93a1-c7917d50d4d6_Screenshot 2023-11-29 095836.png",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/694a89cc-c137-4774-93a1-c7917d50d4d6_Screenshot 2023-11-29 095836.png",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\694a89cc-c137-4774-93a1-c7917d50d4d6_Screenshot 2023-11-29 095836.png"
     },
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\a2a60629-94e1-495e-8ef3-b8a4463590fb_Screenshot 2023-11-29 095836.png",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\a2a60629-94e1-495e-8ef3-b8a4463590fb_Screenshot 2023-11-29 095836.png",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/a2a60629-94e1-495e-8ef3-b8a4463590fb_Screenshot 2023-11-29 095836.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\a2a60629-94e1-495e-8ef3-b8a4463590fb_Screenshot 2023-11-29 095836.png"
     },
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\cf49ae2f-968b-43c6-bbc6-c63cffb2f219_الجوكر.jpg"
     },
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\dfe912f8-668f-493a-97e0-d57ad95e420c_Screenshot 2023-11-29 093420.png",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\dfe912f8-668f-493a-97e0-d57ad95e420c_Screenshot 2023-11-29 093420.png",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/dfe912f8-668f-493a-97e0-d57ad95e420c_Screenshot 2023-11-29 093420.png",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\dfe912f8-668f-493a-97e0-d57ad95e420c_Screenshot 2023-11-29 093420.png"
     },
     {
-      "Identity": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\e6195399-1f7c-4c02-ad5b-e871d52f0179_الجوكر.jpg",
+      "Identity": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\Images\\e6195399-1f7c-4c02-ad5b-e871d52f0179_الجوكر.jpg",
       "SourceId": "Learning_platform",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\KING\\My-GitHub\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\HitmanX\\source\\repos\\Learning\\Learning_platform\\Learning_platform\\wwwroot\\",
       "BasePath": "_content/Learning_platform",
       "RelativePath": "Images/e6195399-1f7c-4c02-ad5b-e871d52f0179_الجوكر.jpg",
       "AssetKind": "All",

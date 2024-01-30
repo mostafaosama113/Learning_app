@@ -77,11 +77,17 @@ namespace Learning_platform.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PasswordResetPin")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ResetExpires")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -110,14 +116,14 @@ namespace Learning_platform.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "78d2af24-219f-42db-b546-31dedd7f1909",
+                            ConcurrencyStamp = "8efa11d6-61eb-4010-a964-ab7f97967b92",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             Image = "adminphoto",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPEJsiHJoCICzulBRjLrN5XMwIPYZjiSDMuEb/YtKe0PopXRyhFKOtAR3DPAnGzPrA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELx2GYPDTj53FuuWqUVK9PQSlKWgeBVNgVCrSgc0KRz+c+NXAFkcL5AyUbr2GMko5Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -280,15 +286,15 @@ namespace Learning_platform.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28d6f765-43f8-42ca-a142-8c4e9d0341ff",
-                            ConcurrencyStamp = "06915d7a-d9f7-455d-953c-7f0882ce10a0",
+                            Id = "c585bc47-ce97-47b6-a6d8-f14dbb3e1e01",
+                            ConcurrencyStamp = "a776f96b-511d-4941-930a-4b84a551c30d",
                             Name = "User",
                             NormalizedName = "user"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "de8a3b6c-9767-4980-b27e-2b50f418048f",
+                            ConcurrencyStamp = "2f692247-43c3-4e7b-9d7d-0cd029052aca",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });

@@ -288,3 +288,6 @@ C:\Users\HitmanX\Source\Repos\Learning\Learning_platform\Learning_platform\obj\D
 C:\Users\HitmanX\Source\Repos\Learning\Learning_platform\Learning_platform\obj\Debug\net8.0\Learning_platform.pdb
 C:\Users\HitmanX\Source\Repos\Learning\Learning_platform\Learning_platform\obj\Debug\net8.0\Learning_platform.genruntimeconfig.cache
 C:\Users\HitmanX\Source\Repos\Learning\Learning_platform\Learning_platform\obj\Debug\net8.0\ref\Learning_platform.dll
+C:\Users\HitmanX\source\repos\Learning\Learning_platform\Learning_platform\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\HitmanX\source\repos\Learning\Learning_platform\Learning_platform\bin\Debug\net8.0\MailKit.dll
+C:\Users\HitmanX\source\repos\Learning\Learning_platform\Learning_platform\bin\Debug\net8.0\MimeKit.dll

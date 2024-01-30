@@ -7,5 +7,10 @@ namespace Learning_platform.Models
     {
         [Required]
         public string Image { get; set; }
+
+
+        public int? PasswordResetPin { get; set; } = null;
+
+        public DateTime? ResetExpires { get; set; } = null;
     }
 }
