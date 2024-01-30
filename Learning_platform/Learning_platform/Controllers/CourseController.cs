@@ -19,18 +19,18 @@ namespace Learning_platform.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        [HttpGet]
+        [HttpGet("getallcourses")]
         public IActionResult GetCourses()
         {
             var courses = _context.Courses.ToList();
-            var courseDTOs = courses.Select(c => new CourseDTO {
-                Id = c.Id,
+            var courseDTOs = courses.Select(c => new AddCourseDTO
+            {
                 Name = c.Name, 
                 Description = c.Description, 
             }).ToList();
             return Ok(courseDTOs);
         }
-        [HttpGet("{id}")]
+        [HttpGet("getcoursebID/{id}")]
         public IActionResult GetCourseById(int id)
         {
             var course = _context.Courses.Find(id);
@@ -40,11 +40,11 @@ namespace Learning_platform.Controllers
                 return NotFound();
             }
 
-            var courseDTO = new CourseDTO { Id = course.Id, Name = course.Name, Description = course.Description };
+            var courseDTO = new AddCourseDTO { Name = course.Name, Description = course.Description };
             return Ok(courseDTO);
         }
 
-        [HttpPost]
+        [HttpPost("addcourse")]
         public async Task<IActionResult> AddCourse([FromForm] AddCourseDTO courseDTO)
         {
             if (courseDTO == null)
@@ -53,10 +53,11 @@ namespace Learning_platform.Controllers
             }
 
             var category = await _context.Category.FindAsync(courseDTO.Category_Id);
+            var instructor = await _context.Instructors.FindAsync(courseDTO.Instructor_Id);
 
-            if (category == null)
+            if (category == null || instructor == null)
             {
-                return BadRequest($"Category with id '{courseDTO.Category_Id}' not found.");
+                return BadRequest("Invalid category or instructor data.");
             }
 
             if (_context.Courses.Any(c => c.Name == courseDTO.Name))
@@ -71,7 +72,8 @@ namespace Learning_platform.Controllers
                 Name = courseDTO.Name,
                 Description = courseDTO.Description,
                 ImageOfCertificate = uniqueFileName,
-                Category = category
+                Category = category,
+                Instructors = new List<Instructor> { instructor }
             };
 
             _context.Courses.Add(course);
@@ -80,7 +82,7 @@ namespace Learning_platform.Controllers
             return Ok("Course added successfully.");
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("updatecourse/{id}")]
         public async Task<IActionResult> UpdateCourse(int id, [FromForm] AddCourseDTO courseUpdateDTO)
         {
             var existingCourse = await _context.Courses.FindAsync(id);
@@ -91,10 +93,11 @@ namespace Learning_platform.Controllers
             }
 
             var category = await _context.Category.FindAsync(courseUpdateDTO.Category_Id);
+            var instructor = await _context.Instructors.FindAsync(courseUpdateDTO.Instructor_Id);
 
-            if (category == null)
+            if (category == null || instructor == null)
             {
-                return BadRequest($"Category with id '{courseUpdateDTO.Category_Id}' not found.");
+                return BadRequest("Invalid category or instructor data.");
             }
 
             if (_context.Courses.Any(c => c.Name == courseUpdateDTO.Name && c.Id != id))
@@ -108,6 +111,7 @@ namespace Learning_platform.Controllers
             existingCourse.Description = courseUpdateDTO.Description;
             existingCourse.ImageOfCertificate = uniqueFileName;
             existingCourse.Category = category;
+            existingCourse.Instructors = new List<Instructor> { instructor };
 
             await _context.SaveChangesAsync();
 
@@ -135,7 +139,7 @@ namespace Learning_platform.Controllers
         }
 
         // DELETE: api/courses/1
-        [HttpDelete("{id}")]
+        [HttpDelete("deletecourse/{id}")]
         public async Task<IActionResult> DeleteCourse(int id)
         {
             var course = await _context.Courses.FindAsync(id);

@@ -243,7 +243,6 @@ namespace Learning_platform.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Video = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Vote = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -257,19 +256,39 @@ namespace Learning_platform.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Votes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Votes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Votes_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2", "771bf382-e23a-410b-8f7d-88afb7b56ee3", "Admin", "admin" },
-                    { "7b33de81-e875-47c9-93db-96b1c5e035e4", "da1cba9b-4b2f-4f8d-b05e-ce059d89ef6a", "User", "user" }
+                    { "2", "de8a3b6c-9767-4980-b27e-2b50f418048f", "Admin", "admin" },
+                    { "28d6f765-43f8-42ca-a142-8c4e9d0341ff", "06915d7a-d9f7-455d-953c-7f0882ce10a0", "User", "user" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "Image", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "613e3ce3-8a7b-499c-b549-fe0634122f65", "admin@example.com", true, "adminphoto", false, null, "ADMIN@EXAMPLE.COM", "Admin", "AQAAAAIAAYagAAAAEH7FtSdvSaLCdfWTXr4KfJ+spPl6hZsZxFNqBM6KdgqfnlaqtCRJcAoCCO3gbU5fig==", null, false, "", false, "admin" });
+                values: new object[] { "1", 0, "78d2af24-219f-42db-b546-31dedd7f1909", "admin@example.com", true, "adminphoto", false, null, "ADMIN@EXAMPLE.COM", "Admin", "AQAAAAIAAYagAAAAEPEJsiHJoCICzulBRjLrN5XMwIPYZjiSDMuEb/YtKe0PopXRyhFKOtAR3DPAnGzPrA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -329,6 +348,11 @@ namespace Learning_platform.Migrations
                 name: "IX_Lessons_CourseId",
                 table: "Lessons",
                 column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votes_CourseId",
+                table: "Votes",
+                column: "CourseId");
         }
 
         /// <inheritdoc />
@@ -354,6 +378,9 @@ namespace Learning_platform.Migrations
 
             migrationBuilder.DropTable(
                 name: "Lessons");
+
+            migrationBuilder.DropTable(
+                name: "Votes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -9,5 +9,6 @@
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
         public Category Category { get; set; }
+        public ICollection<Vote> Votes { get; set; }
     }
 }

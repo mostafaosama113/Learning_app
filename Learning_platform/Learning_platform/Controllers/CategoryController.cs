@@ -16,21 +16,27 @@ namespace Learning_platform.Controllers
             _context = context;
         }
 
-        [HttpPost("addcategor")]
+        [HttpPost("addcategory")]
         public async Task<IActionResult> AddCategory([FromBody] CategoryDTO categoryDTO)
         {
             if (categoryDTO == null)
             {
-                return BadRequest("Invalid term data.");
+                return BadRequest("Invalid category data.");
             }
+            if (_context.Category.Any(c => c.Name == categoryDTO.Name))
+            {
+                return BadRequest($"Category with name '{categoryDTO.Name}' already exists.");
+            }
+
             var category = new Category
             {
                 Name = categoryDTO.Name
             };
+
             _context.Category.Add(category);
             await _context.SaveChangesAsync();
 
-            return Ok("category added successfully.");
+            return Ok("Category added successfully.");
         }
 
         [HttpPut("updatecategory/{id}")]
@@ -41,6 +47,11 @@ namespace Learning_platform.Controllers
             if (existingCategory == null)
             {
                 return NotFound("Category not found.");
+            }
+
+            if (_context.Category.Any(c => c.Name == updatedCategoryDTO.Name && c.Id != id))
+            {
+                return BadRequest($"Category with name '{updatedCategoryDTO.Name}' already exists.");
             }
 
             existingCategory.Name = updatedCategoryDTO.Name;
@@ -66,7 +77,7 @@ namespace Learning_platform.Controllers
             return Ok("Category deleted successfully.");
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getcategorybyId/{id}")]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             var category = await _context.Category.FindAsync(id);
@@ -78,7 +89,7 @@ namespace Learning_platform.Controllers
 
             return Ok(category);
         }
-        [HttpGet]
+        [HttpGet("getallcategory")]
         public IActionResult GetAllCategories()
         {
             var categories = _context.Category.ToList();

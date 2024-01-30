@@ -7,7 +7,6 @@
         public string Description { get; set; }
         public string Video { get; set; }
         public int Price { get; set; }
-        public int Vote { get; set; }
         public Course Course { get; set; }
     }
 }

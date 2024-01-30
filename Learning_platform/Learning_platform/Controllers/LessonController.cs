@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learning_platform.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class LessonController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -16,7 +18,7 @@ namespace Learning_platform.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost("addlesson")]
         public async Task<IActionResult> AddLesson([FromForm] LessonDTO lessonDTO)
         {
             if (lessonDTO == null)
@@ -47,7 +49,6 @@ namespace Learning_platform.Controllers
                     Description = lessonDTO.Description,
                     Video = uniqueFileName,
                     Price = lessonDTO.Price,
-                    Vote = lessonDTO.Vote,
                     Course = course
                 };
 
@@ -59,7 +60,7 @@ namespace Learning_platform.Controllers
             return BadRequest();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("updatelesson/{id}")]
         public async Task<IActionResult> UpdateLesson(int id, [FromForm] LessonDTO lessonDTO)
         {
             var lessonToUpdate = await _context.Lessons.FindAsync(id);
@@ -86,14 +87,13 @@ namespace Learning_platform.Controllers
             lessonToUpdate.Name = lessonDTO.Name;
             lessonToUpdate.Description = lessonDTO.Description;
             lessonToUpdate.Price = lessonDTO.Price;
-            lessonToUpdate.Vote = lessonDTO.Vote;
 
             await _context.SaveChangesAsync();
 
             return Ok("Lesson updated successfully.");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("deletelesson/{id}")]
         public async Task<IActionResult> DeleteLesson(int id)
         {
             var lessonToDelete = await _context.Lessons.FindAsync(id);

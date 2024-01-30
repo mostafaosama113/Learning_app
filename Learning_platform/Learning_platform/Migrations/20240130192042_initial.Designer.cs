@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Learning_platform.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240129181554_initial")]
+    [Migration("20240130192042_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -113,14 +113,14 @@ namespace Learning_platform.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "613e3ce3-8a7b-499c-b549-fe0634122f65",
+                            ConcurrencyStamp = "78d2af24-219f-42db-b546-31dedd7f1909",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             Image = "adminphoto",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "Admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH7FtSdvSaLCdfWTXr4KfJ+spPl6hZsZxFNqBM6KdgqfnlaqtCRJcAoCCO3gbU5fig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPEJsiHJoCICzulBRjLrN5XMwIPYZjiSDMuEb/YtKe0PopXRyhFKOtAR3DPAnGzPrA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -226,14 +226,32 @@ namespace Learning_platform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Vote")
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("Learning_platform.Models.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Value")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Lessons");
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -265,15 +283,15 @@ namespace Learning_platform.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7b33de81-e875-47c9-93db-96b1c5e035e4",
-                            ConcurrencyStamp = "da1cba9b-4b2f-4f8d-b05e-ce059d89ef6a",
+                            Id = "28d6f765-43f8-42ca-a142-8c4e9d0341ff",
+                            ConcurrencyStamp = "06915d7a-d9f7-455d-953c-7f0882ce10a0",
                             Name = "User",
                             NormalizedName = "user"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "771bf382-e23a-410b-8f7d-88afb7b56ee3",
+                            ConcurrencyStamp = "de8a3b6c-9767-4980-b27e-2b50f418048f",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -429,6 +447,17 @@ namespace Learning_platform.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("Learning_platform.Models.Vote", b =>
+                {
+                    b.HasOne("Learning_platform.Models.Course", "Course")
+                        .WithMany("Votes")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -488,6 +517,8 @@ namespace Learning_platform.Migrations
             modelBuilder.Entity("Learning_platform.Models.Course", b =>
                 {
                     b.Navigation("Lessons");
+
+                    b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618
         }
