@@ -19,6 +19,26 @@ namespace Learning_platform.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
+        [HttpGet("search")]
+        public IActionResult SearchCoursesByName([FromQuery] string courseName)
+        {
+            if (string.IsNullOrWhiteSpace(courseName))
+            {
+                return BadRequest("No result.");
+            }
+
+            var courses = _context.Courses
+                .Where(c => c.Name.Contains(courseName, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (courses.Count == 0)
+            {
+                return NotFound($"No courses found with the name '{courseName}'.");
+            }
+
+            var courseNames = courses.Select(c => c.Name).ToList();
+            return Ok(courseNames);
+        }
         [HttpGet("getallcourses")]
         public IActionResult GetCourses()
         {
