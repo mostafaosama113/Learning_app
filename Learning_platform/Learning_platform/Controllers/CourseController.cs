@@ -3,7 +3,7 @@ using Learning_platform.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 namespace Learning_platform.Controllers
 {
@@ -43,7 +43,25 @@ namespace Learning_platform.Controllers
             var courseDTO = new AddCourseDTO { Name = course.Name, Description = course.Description };
             return Ok(courseDTO);
         }
+        [HttpGet("getallinstructorinsideonecourse/{courseId}")]
+        public IActionResult GetInstructorsByCourse(int courseId)
+        {
+            var course = _context.Courses.Include(c => c.Instructors).FirstOrDefault(c => c.Id == courseId);
 
+            if (course == null)
+            {
+                return NotFound("Course not found.");
+            }
+
+            var instructors = course.Instructors.Select(i => new InstructorDetailsDTO
+            {
+                Name = i.Name,
+                Photo = i.Image,
+                Description = i.Description,
+            }).ToList();
+
+            return Ok(instructors);
+        }
         [HttpPost("addcourse")]
         public async Task<IActionResult> AddCourse([FromForm] AddCourseDTO courseDTO)
         {

@@ -2,6 +2,7 @@
 using Learning_platform.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Learning_platform.Controllers
 {
@@ -16,23 +17,36 @@ namespace Learning_platform.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public IActionResult GetAllVotesForCourse(int courseId)
+        [HttpGet("{courseId}/average-vote")]
+        public IActionResult GetAverageVoteForCourse(int courseId)
         {
-            var votes = _context.Votes.Where(v => v.Course.Id == courseId).ToList();
-            var voteDTOs = votes.Select(v => new VoteDTO
+            var course = _context.Courses.Include(c => c.Votes).FirstOrDefault(c => c.Id == courseId);
+            if (course == null)
             {
-                Value = v.Value
-            }).ToList();
-            return Ok(voteDTOs);
+                return NotFound("Course not found.");
+            }
+            var votes = course.Votes;
+            if (votes == null || votes.Count == 0)
+            {
+                return Ok(0);
+            }
+            int totalVotes = votes.Count;
+            int totalValues = votes.Sum(v => v.Value);
+            double averageVote = (double)totalValues / totalVotes;
+            int roundedAverage = (int)Math.Round(averageVote);
+            return Ok(roundedAverage);
         }
 
-        [HttpPost]
         public IActionResult AddVoteForCourse(int courseId, [FromBody] VoteDTO voteDTO)
         {
             if (voteDTO == null)
             {
                 return BadRequest("Invalid vote data.");
+            }
+
+            if (voteDTO.Value > 5)
+            {
+                return BadRequest("Vote value cannot exceed 5.");
             }
 
             var course = _context.Courses.Find(courseId);
@@ -62,6 +76,11 @@ namespace Learning_platform.Controllers
             if (existingVote == null)
             {
                 return NotFound("Vote not found.");
+            }
+
+            if (voteDTO.Value > 5)
+            {
+                return BadRequest("Vote value cannot exceed 5.");
             }
 
             existingVote.Value = voteDTO.Value;
