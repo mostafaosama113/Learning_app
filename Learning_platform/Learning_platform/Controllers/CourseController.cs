@@ -2,6 +2,7 @@
 using Learning_platform.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Learning_platform.Controllers
 
             if (courses.Count == 0)
             {
-                return NotFound($"No courses found with the name '{courseName}'.");
+                return NotFound("No result.");
             }
 
             var courseNames = courses.Select(c => c.Name).ToList();
